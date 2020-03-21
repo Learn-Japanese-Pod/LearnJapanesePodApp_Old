@@ -12,17 +12,19 @@ import { AppNavigation } from './navigation';
 import { Network } from './network';
 import { Player } from './components/organisms/Player';
 import { useKeepAwake } from 'expo-keep-awake';
-import { SENTRY_DSN } from './config';
+import config from './config.json';
 import { Buffer } from 'buffer';
 
 global.Buffer = Buffer;
 
-Sentry.init({
-  dsn: SENTRY_DSN,
-  debug: true,
-  enableInExpoDevelopment: false,
-});
-Sentry.setRelease(Constants.manifest.revisionId);
+if (!__DEV__ && config.sentryDsn) {
+  Sentry.init({
+    dsn: config.sentryDsn,
+    debug: true,
+    enableInExpoDevelopment: false,
+  });
+  Sentry.setRelease(Constants.manifest.revisionId);
+}
 
 const PageWrap = styled.View`
   flex: 1;

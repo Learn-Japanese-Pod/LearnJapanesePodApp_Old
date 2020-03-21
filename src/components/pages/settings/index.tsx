@@ -1,11 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  deletePersistedData,
-  deleteDir,
-  sendTestNotification,
-  deletePushToken,
-} from '../../../store/device';
+import { deletePersistedData, deleteDir } from '../../../store/device';
 import { Text, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import {
@@ -183,12 +178,6 @@ export const Settings = () => {
             </Button>
             <Button onPress={() => dispatch(deleteDir())}>
               <ButtonText>Delete Downloads</ButtonText>
-            </Button>
-            <Button onPress={() => dispatch(deletePushToken())}>
-              <ButtonText>Delete Push Token</ButtonText>
-            </Button>
-            <Button onPress={() => dispatch(sendTestNotification())}>
-              <ButtonText>Send Test Notification</ButtonText>
             </Button>
           </>
         )}

@@ -7,7 +7,7 @@ import {
   setRefreshing,
 } from './actions';
 import { parseRss } from './parseRss';
-import { MAIN_FEED_URL } from '../../config';
+import config from '../../config.json';
 import { setPodcastDetails, updatePodcastDetails } from '../details/actions';
 import { getPushToken, persistData, setLoading } from '../device/actions';
 import { getConnected } from '../network/selectors';
@@ -28,7 +28,7 @@ function* refreshMainFeedSaga() {
 
   yield put(setRefreshing(true));
 
-  const rss = yield fetch(MAIN_FEED_URL).then(response => response.text());
+  const rss = yield fetch(config.mainFeedUrl).then(response => response.text());
 
   const promise = new Promise(resolve => {
     parseString(rss, (err, res) => {
@@ -47,7 +47,7 @@ function* refreshMainFeedSaga() {
 }
 
 function* getMainFeedSaga() {
-  const rss = yield fetch(MAIN_FEED_URL).then(response => response.text());
+  const rss = yield fetch(config.mainFeedUrl).then(response => response.text());
 
   const promise = new Promise(resolve => {
     parseString(rss, (err, res) => {
