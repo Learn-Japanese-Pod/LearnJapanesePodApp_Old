@@ -80,7 +80,7 @@ export const PodcastTabContent = ({ rssItem }: Props) => {
       />
       <FooterButtons>
         {type === PodcastTypes.PDF ? (
-          <OpenButton url={url} downloaded={details.downloaded} />
+          <OpenButton url={url} downloaded={details?.downloaded} />
         ) : (
           <PlayButton rssItem={rssItem} url={url} />
         )}

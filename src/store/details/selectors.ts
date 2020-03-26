@@ -10,4 +10,4 @@ export const getDetailsById = (state: GlobalState, id: string): PodcastMeta =>
   getState(state).podcasts.find(it => it.id === id);
 
 export const getDownloadedById = (state: GlobalState, id: string) =>
-  getState(state).podcasts.find(it => it.id === id).downloaded;
+  getState(state).podcasts.find(it => it.id === id)?.downloaded;

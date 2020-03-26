@@ -8,7 +8,9 @@
     "eject": "expo eject",
     "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx ./",
     "build:android": "expo build:android -t app-bundle",
-    "build:ios": "expo build:ios"
+    "build:ios": "expo build:ios",
+    "publish": "expo publish",
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,6 +53,8 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/jest": "^25.1.4",
     "@types/node": "^13.9.2",
     "@types/react": "^16.9.22",
     "@types/react-native": "~0.60.23",
@@ -67,6 +71,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.4.0",
+    "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "typescript": "^3.8.3"
   },

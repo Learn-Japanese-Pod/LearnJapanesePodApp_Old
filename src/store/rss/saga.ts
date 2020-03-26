@@ -41,7 +41,7 @@ function* refreshMainFeedSaga() {
   const { parsedRss } = yield promise;
 
   yield put(saveMainFeed(parsedRss));
-  yield put(updatePodcastDetails(parsedRss));
+  yield put(setPodcastDetails(parsedRss));
   yield put(setRefreshing(false));
   yield put(persistData());
 }
