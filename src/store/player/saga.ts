@@ -119,13 +119,13 @@ function* toggleMuteSaga() {
 function* ffAudioSaga() {
   const { positionMillis } = yield select(getStatus);
   const player = yield select(getPlayer);
-  yield player.setPositionAsync(positionMillis + 3000);
+  yield player.setPositionAsync(positionMillis + 30000);
 }
 
 function* rwAudioSaga() {
   const { positionMillis } = yield select(getStatus);
   const player = yield select(getPlayer);
-  yield player.setPositionAsync(positionMillis - 3000);
+  yield player.setPositionAsync(positionMillis - 30000);
 }
 
 function* jumpToAudioSaga(action) {
