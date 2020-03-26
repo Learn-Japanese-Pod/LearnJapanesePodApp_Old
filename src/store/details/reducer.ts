@@ -16,30 +16,41 @@ export function rehydrateDetailsStateReducer(state, action) {
 
 export function setPodcastDetailsReducer(state, action) {
   const rss = action.payload;
+  const currentDetails = state.podcasts;
   const details = [];
 
   rss.forEach(it => {
-    const { id, notes, drill } = it;
+    const { id: lessonId, notes, drill } = it;
+    const noteId = notes?.id;
+    const drillId = drill?.id;
+
+    const existingLesson = currentDetails.find(it => it.id === lessonId);
+    const existingNote = currentDetails.find(it => it.id === noteId);
+    const existingDrill = currentDetails.find(it => it.id === drillId);
+
     const detailObj = {
-      id,
+      id: lessonId,
       completed: false,
       downloaded: false,
       downloadedUrl: '',
       starred: false,
     };
 
-    details.push(detailObj);
+    if (existingLesson) details.push(existingLesson);
+    else details.push(detailObj);
 
-    if (notes)
+    if (notes && existingNote) details.push(existingNote);
+    else if (notes)
       details.push({
         ...detailObj,
-        id: notes.id,
+        id: noteId,
       });
 
-    if (drill)
+    if (drill && existingDrill) details.push(existingDrill);
+    else if (drill)
       details.push({
         ...detailObj,
-        id: drill.id,
+        id: drillId,
       });
   });
 

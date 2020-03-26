@@ -40,12 +40,12 @@
     ],
     "android": {
       "package": "com.thecodingforge.learnjapanesepod",
-      "versionCode": 4,
+      "versionCode": 5,
       "icon": "./assets/icon.png"
     },
     "ios": {
       "bundleIdentifier": "com.thecodingforge.learnjapanesepod",
-      "buildNumber": "4",
+      "buildNumber": "5",
       "supportsTablet": false,
       "infoPlist": {
         "UIBackgroundModes": [
