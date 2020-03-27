@@ -30,7 +30,7 @@ Learn Japanese Pod is a podcast that teaches you how to speak fluent, natural, J
 - npm i
 - npm start
 - When prompted hit (i) for the iOS sim or (a) for the Android sim
-  - Alternatively on Android scan the QR code with the expo app
+  - Alternatively scan the QR code with the expo app
 
 I'd also reccommend downloading this [React Native Debugger](https://github.com/jhen0409/react-native-debugger) for debugging your apps while running them in them sim or on your devices from expo.
 
