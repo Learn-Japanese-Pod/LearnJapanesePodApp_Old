@@ -4,13 +4,15 @@ import { FontAwesome } from '@expo/vector-icons';
 import { ButtonText, FooterButton } from '../../atoms';
 import { requestNewAudio, getFetching } from '../../../store/player';
 import { RssFeedItem } from '../../../store/rss';
+import { withTheme } from 'styled-components';
 
 type Props = {
   rssItem: RssFeedItem;
   url: string;
+  theme: unknown;
 };
 
-export const PlayButton = ({ rssItem, url }: Props) => {
+const Button = ({ rssItem, url, theme }: Props) => {
   const dispatch = useDispatch();
   const fetching = useSelector(getFetching);
 
@@ -30,8 +32,14 @@ export const PlayButton = ({ rssItem, url }: Props) => {
   return (
     <FooterButton onPress={handlePress}>
       <ButtonText>
-        <FontAwesome name={'play-circle'} size={26} style={{ color: '#333' }} />
+        <FontAwesome
+          name={'play-circle'}
+          size={26}
+          style={{ color: theme.iconColor }}
+        />
       </ButtonText>
     </FooterButton>
   );
 };
+
+export const PlayButton = withTheme(Button);

@@ -5,13 +5,15 @@ import { FooterButton, ButtonText } from '../../atoms';
 import { useNavigation } from '@react-navigation/native';
 import { getConnected } from '../../../store/network/selectors';
 import { Alert } from 'react-native';
+import { withTheme } from 'styled-components';
 
 type Props = {
   url: string;
   downloaded: boolean;
+  theme: unknown;
 };
 
-export const OpenButton = ({ url, downloaded }: Props) => {
+const Button = ({ url, downloaded, theme }: Props) => {
   const navigation = useNavigation();
   const connected = useSelector(getConnected);
 
@@ -37,9 +39,11 @@ export const OpenButton = ({ url, downloaded }: Props) => {
         <FontAwesome
           name={'external-link'}
           size={26}
-          style={{ color: '#333' }}
+          style={{ color: theme.iconColor }}
         />
       </ButtonText>
     </FooterButton>
   );
 };
+
+export const OpenButton = withTheme(Button);

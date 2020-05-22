@@ -8,11 +8,11 @@ const Button = styled.TouchableOpacity`
 `;
 
 const activeCSS = css`
-  background-color: #ddd;
+  background-color: ${props => props.theme.tabActive};
 `;
 
 const defaultCSS = css`
-  background-color: #ececec;
+  background-color: ${props => props.theme.tab};
 `;
 
 type TabProps = {
@@ -32,6 +32,7 @@ const TabText = styled(Text)`
   text-transform: uppercase;
   font-weight: bold;
   font-size: 10px;
+  color: ${props => props.theme.tabTextColor};
 `;
 
 type Props = {

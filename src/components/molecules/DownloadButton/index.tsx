@@ -1,20 +1,22 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
-import { green, black } from '../../../colors';
+import { green } from '../../../colors';
 import { PodcastTypes } from '../../../store/rss';
 import { downloadItem, isDownloadingById } from '../../../store/download';
 import { FooterButton } from '../../atoms';
 import { Spinner } from '../../atoms/Spinner';
 import { getDownloadedById } from '../../../store/details';
+import { withTheme } from 'styled-components';
 
 type Props = {
   url: string;
   id: string;
   type: PodcastTypes;
+  theme: unknown;
 };
 
-export const DownloadButton = ({ url, id, type }: Props) => {
+const Button = ({ url, id, type, theme }: Props) => {
   const dispatch = useDispatch();
   const downloaded = useSelector(state => getDownloadedById(state, id));
   const downloading = useSelector(state => isDownloadingById(state, id));
@@ -35,7 +37,7 @@ export const DownloadButton = ({ url, id, type }: Props) => {
     <FontAwesome
       name={'download'}
       size={26}
-      style={{ color: downloaded ? green : black }}
+      style={{ color: downloaded ? green : theme.iconColor }}
     />
   );
 
@@ -45,3 +47,5 @@ export const DownloadButton = ({ url, id, type }: Props) => {
     </FooterButton>
   );
 };
+
+export const DownloadButton = withTheme(Button);

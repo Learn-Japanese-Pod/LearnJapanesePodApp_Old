@@ -5,9 +5,9 @@ import {
   getStatus,
   getFetching,
 } from '../../../store/player/selectors';
-import styled, { css } from 'styled-components/native';
+import styled, { css, ThemeProvider } from 'styled-components/native';
 import { TouchableOpacity, Dimensions } from 'react-native';
-import { green } from '../../../colors';
+import { green, lightTheme, darkTheme } from '../../../colors';
 import { Text } from 'react-native';
 import { PlayerNib } from '../../molecules/PlayerNib';
 import {
@@ -26,15 +26,16 @@ import {
   rwAudio,
   jumpToAudio,
 } from '../../../store/player/actions';
+import { useColorScheme } from 'react-native-appearance';
 
 const Wrap = styled.View`
   height: 150px;
   display: flex;
   flex-flow: column;
   align-items: center;
-  background-color: #f1f1f1;
+  background-color: ${props => props.theme.playerBG};
   border-top-width: 2px;
-  border-color: #ddd;
+  border-color: ${props => props.theme.playerBGBorder};
 `;
 
 const ProgressWrap = styled.View`
@@ -63,7 +64,7 @@ const ProgressBar = styled.View`
 const BufferBar = styled.View`
   ${BarCSS};
   width: ${(props: Buffer) => props.buffer}%;
-  background-color: #ececec;
+  background-color: ${props => props.theme.playerBufferBarBG};
   opacity: 0.3;
   z-index: 1;
 `;
@@ -71,7 +72,7 @@ const BufferBar = styled.View`
 const BackBar = styled.View`
   ${BarCSS};
   width: 100%;
-  background-color: #333;
+  background-color: ${props => props.theme.playerBackBarBG};
   z-index: 0;
 `;
 
@@ -99,6 +100,7 @@ const NowPlayingWrap = styled.View`
 
 const NowPlayingText = styled(Text)`
   padding-horizontal: 16px;
+  color: ${props => props.theme.playerText};
 `;
 
 const IconWrap = styled.View``;
@@ -116,6 +118,8 @@ export const Player = () => {
   const isFetching = useSelector(getFetching);
   const { title } = useSelector(getCurrentlyPlaying);
   const screenWidth = Math.round(Dimensions.get('window').width);
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === 'light' ? lightTheme : darkTheme;
 
   const {
     durationMillis,
@@ -167,27 +171,43 @@ export const Player = () => {
   if (!isPlaying && isLoaded && !isBuffering) {
     MainIcon = (
       <TouchableOpacity onPress={handlePlay}>
-        <FontAwesome name={'play-circle'} size={45} />
+        <FontAwesome
+          name={'play-circle'}
+          size={45}
+          style={{ color: theme.iconColor }}
+        />
       </TouchableOpacity>
     );
   }
   if (isPlaying && isLoaded) {
     MainIcon = (
       <TouchableOpacity onPress={handlePause}>
-        <FontAwesome name={'pause-circle'} size={45} />
+        <FontAwesome
+          name={'pause-circle'}
+          size={45}
+          style={{ color: theme.iconColor }}
+        />
       </TouchableOpacity>
     );
   }
 
   const RW = (
     <TouchableOpacity onPress={handleRW}>
-      <MaterialIcons name="replay-30" size={30} />
+      <MaterialIcons
+        name="replay-10"
+        size={30}
+        style={{ color: theme.iconColor }}
+      />
     </TouchableOpacity>
   );
 
   const FF = (
     <TouchableOpacity onPress={handleFF}>
-      <MaterialIcons name="forward-30" size={30} />
+      <MaterialIcons
+        name="forward-10"
+        size={30}
+        style={{ color: theme.iconColor }}
+      />
     </TouchableOpacity>
   );
 
@@ -196,20 +216,20 @@ export const Player = () => {
       <Entypo
         name="loop"
         size={30}
-        style={{ color: isLooping ? '#3cd070' : '#333' }}
+        style={{ color: isLooping ? green : theme.iconColor }}
       />
     </TouchableOpacity>
   );
 
   const Muted = (
     <TouchableOpacity onPress={handleMute}>
-      <Feather name="volume-x" size={30} />
+      <Feather name="volume-x" size={30} style={{ color: theme.iconColor }} />
     </TouchableOpacity>
   );
 
   const NotMuted = (
     <TouchableOpacity onPress={handleMute}>
-      <Feather name="volume-2" size={30} />
+      <Feather name="volume-2" size={30} style={{ color: theme.iconColor }} />
     </TouchableOpacity>
   );
 
@@ -218,24 +238,26 @@ export const Player = () => {
   if (!title) return null;
 
   return (
-    <Wrap>
-      <NowPlayingWrap>
-        <NowPlayingText numberOfLines={1}>{title}</NowPlayingText>
-      </NowPlayingWrap>
-      <ProgressWrap>
-        <TouchBar onPress={handleBarPress} />
-        <BackBar pointerEvents="none" />
-        <ProgressBar pointerEvents="none" complete={completionPercentage} />
-        <BufferBar pointerEvents="none" buffer={bufferedPercentage} />
-        <PlayerNib complete={completionPercentage} />
-      </ProgressWrap>
-      <Controls>
-        <IconWrap>{mutedIcon}</IconWrap>
-        <IconWrap>{RW}</IconWrap>
-        <IconWrap>{MainIcon}</IconWrap>
-        <IconWrap>{FF}</IconWrap>
-        <IconWrap>{Loop}</IconWrap>
-      </Controls>
-    </Wrap>
+    <ThemeProvider theme={theme}>
+      <Wrap>
+        <NowPlayingWrap>
+          <NowPlayingText numberOfLines={1}>{title}</NowPlayingText>
+        </NowPlayingWrap>
+        <ProgressWrap>
+          <TouchBar onPress={handleBarPress} />
+          <BackBar pointerEvents="none" />
+          <ProgressBar pointerEvents="none" complete={completionPercentage} />
+          <BufferBar pointerEvents="none" buffer={bufferedPercentage} />
+          <PlayerNib complete={completionPercentage} />
+        </ProgressWrap>
+        <Controls>
+          <IconWrap>{mutedIcon}</IconWrap>
+          <IconWrap>{RW}</IconWrap>
+          <IconWrap>{MainIcon}</IconWrap>
+          <IconWrap>{FF}</IconWrap>
+          <IconWrap>{Loop}</IconWrap>
+        </Controls>
+      </Wrap>
+    </ThemeProvider>
   );
 };

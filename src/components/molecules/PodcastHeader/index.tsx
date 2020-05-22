@@ -5,6 +5,7 @@ import { Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { getDetailsById, setStarred } from '../../../store/details';
 import { PodcastTypes } from '../../../store/rss';
+import { withTheme } from 'styled-components';
 
 const Wrap = styled(View)`
   margin-bottom: 4px;
@@ -25,11 +26,13 @@ const TitleWrap = styled.View`
 
 const HeaderText = styled(Text)`
   font-size: 20px;
+  color: ${props => props.theme.podcastHeaderText};
 `;
 
 const SubHeaderText = styled(Text)`
   font-size: 16px;
   font-weight: bold;
+  color: ${props => props.theme.podcastSubHeaderText};
 `;
 
 const FavouriteButton = styled.TouchableOpacity`
@@ -42,9 +45,10 @@ type Props = {
   id: string;
   subTitle: string;
   type: PodcastTypes;
+  theme: unknown;
 };
 
-export const PodcastHeader = ({ title, subTitle, id }: Props) => {
+const HeaderComponent = ({ title, subTitle, id, theme }: Props) => {
   const dispatch = useDispatch();
   const details = useSelector(state => getDetailsById(state, id));
   const isStarred = details && details.starred;
@@ -69,10 +73,12 @@ export const PodcastHeader = ({ title, subTitle, id }: Props) => {
           <FontAwesome
             name="star"
             size={26}
-            style={{ color: isStarred ? '#3cd070' : '#DDD' }}
+            style={{ color: isStarred ? '#3cd070' : theme.starColor }}
           />
         </FavouriteButton>
       </Header>
     </Wrap>
   );
 };
+
+export const PodcastHeader = withTheme(HeaderComponent);

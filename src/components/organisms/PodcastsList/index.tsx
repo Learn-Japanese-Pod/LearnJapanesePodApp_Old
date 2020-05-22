@@ -16,14 +16,14 @@ import { getDetails, PodcastMeta } from '../../../store/details';
 
 const Wrap = styled.View`
   padding-horizontal: 16px;
-  background-color: #fff;
+  background-color: ${props => props.theme.podcastListBG};
   flex: 1;
 `;
 
 const Seperator = styled.View`
   width: 30px;
   height: 3px;
-  background-color: #ececec;
+  background-color: ${props => props.theme.seperator};
   margin: 0 auto;
   margin-bottom: 16px;
 `;

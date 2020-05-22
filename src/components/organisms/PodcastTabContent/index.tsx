@@ -26,7 +26,7 @@ type WrapProps = {
 };
 
 const Wrap = styled(View)`
-  background-color: #f1f1f1;
+  background-color: ${props => props.theme.tabBG};
   ${(props: WrapProps) =>
     props.type === PodcastTypes.FUN
       ? fullBorderRadiusCSS
@@ -35,13 +35,14 @@ const Wrap = styled(View)`
 
 const FooterButtons = styled.View`
   ${bottomBorderRadiusCSS};
+  background-color: ${props => props.theme.tabContentBody};
   padding: 8px;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
   border-top-width: 1px;
-  border-color: #ddd;
+  border-color: ${props => props.theme.tabBorder};
 `;
 
 type Props = {
