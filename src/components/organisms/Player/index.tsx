@@ -194,7 +194,7 @@ export const Player = () => {
   const RW = (
     <TouchableOpacity onPress={handleRW}>
       <MaterialIcons
-        name="replay-30"
+        name="replay-10"
         size={30}
         style={{ color: theme.iconColor }}
       />
@@ -204,7 +204,7 @@ export const Player = () => {
   const FF = (
     <TouchableOpacity onPress={handleFF}>
       <MaterialIcons
-        name="forward-30"
+        name="forward-10"
         size={30}
         style={{ color: theme.iconColor }}
       />
