@@ -35,11 +35,12 @@ export const lightTheme = {
   starColor: offWhiteDark,
   filterBorder: offWhiteDark,
   filterTextColor: black,
+  settingsText: black,
 };
 
 export const darkTheme = {
   tabBG: offWhiteLight,
-  buttonBG: offWhiteDark,
+  buttonBG: black5,
   podcastListBG: black,
   seperator: gray,
   playerBG: offWhiteLight,
@@ -62,4 +63,5 @@ export const darkTheme = {
   starColor: black9,
   filterBorder: darkBlack,
   filterTextColor: offWhiteLight,
+  settingsText: offWhiteLight,
 };

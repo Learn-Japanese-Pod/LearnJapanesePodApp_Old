@@ -7,7 +7,7 @@ import {
 } from '../../../store/player/selectors';
 import styled, { css, ThemeProvider } from 'styled-components/native';
 import { TouchableOpacity, Dimensions } from 'react-native';
-import { green, lightTheme } from '../../../colors';
+import { green, lightTheme, darkTheme } from '../../../colors';
 import { Text } from 'react-native';
 import { PlayerNib } from '../../molecules/PlayerNib';
 import {
@@ -26,6 +26,7 @@ import {
   rwAudio,
   jumpToAudio,
 } from '../../../store/player/actions';
+import { useColorScheme } from 'react-native-appearance';
 
 const Wrap = styled.View`
   height: 150px;
@@ -116,7 +117,8 @@ export const Player = () => {
   const isFetching = useSelector(getFetching);
   const { title } = useSelector(getCurrentlyPlaying);
   const screenWidth = Math.round(Dimensions.get('window').width);
-  const theme = lightTheme;
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === 'light' ? lightTheme : darkTheme;
   const {
     durationMillis,
     isBuffering,

@@ -6,14 +6,18 @@ import { Home, Pdf, Settings, Sentences } from './components/pages';
 import { lightTheme, darkTheme } from './colors';
 import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
+import { useColorScheme } from 'react-native-appearance';
 
 export const AppNavigation = () => {
   const Stack = createStackNavigator();
-  const theme = darkTheme;
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === 'light' ? lightTheme : darkTheme;
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar
+        barStyle={colorScheme === 'light' ? 'dark-content' : 'light-content'}
+      />
       <Stack.Navigator>
         <Stack.Screen
           name="Home"

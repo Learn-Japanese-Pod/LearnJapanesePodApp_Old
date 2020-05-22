@@ -5,5 +5,4 @@ export const initialState: DeviceState = {
   pushToken: false,
   loading: true,
   notificationPermissions: false,
-  theme: 'light',
 };
