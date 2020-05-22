@@ -18,6 +18,7 @@ export const lightTheme = {
   playerBG: offWhiteLight,
   playerBufferBarBG: gray,
   playerBackBarBG: black,
+  playerText: black,
   playerNibBG: black,
   tabActive: offWhiteDark,
   tab: gray,
@@ -36,6 +37,7 @@ export const lightTheme = {
   filterBorder: offWhiteDark,
   filterTextColor: black,
   settingsText: black,
+  playerBGBorder: offWhiteDark,
 };
 
 export const darkTheme = {
@@ -43,10 +45,11 @@ export const darkTheme = {
   buttonBG: black5,
   podcastListBG: black,
   seperator: gray,
-  playerBG: offWhiteLight,
+  playerBG: darkBlack,
   playerBufferBarBG: gray,
   playerBackBarBG: black,
-  playerNibBG: black,
+  playerNibBG: black5,
+  playerText: offWhiteLight,
   tabActive: black5,
   tab: black4,
   tabBorder: darkBlack,
@@ -64,4 +67,5 @@ export const darkTheme = {
   filterBorder: darkBlack,
   filterTextColor: offWhiteLight,
   settingsText: offWhiteLight,
+  playerBGBorder: darkBlack,
 };

@@ -35,7 +35,7 @@ const Wrap = styled.View`
   align-items: center;
   background-color: ${props => props.theme.playerBG};
   border-top-width: 2px;
-  border-color: #ddd;
+  border-color: ${props => props.theme.playerBGBorder};
 `;
 
 const ProgressWrap = styled.View`
@@ -100,6 +100,7 @@ const NowPlayingWrap = styled.View`
 
 const NowPlayingText = styled(Text)`
   padding-horizontal: 16px;
+  color: ${props => props.theme.playerText};
 `;
 
 const IconWrap = styled.View``;
@@ -119,6 +120,7 @@ export const Player = () => {
   const screenWidth = Math.round(Dimensions.get('window').width);
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'light' ? lightTheme : darkTheme;
+
   const {
     durationMillis,
     isBuffering,
@@ -169,27 +171,43 @@ export const Player = () => {
   if (!isPlaying && isLoaded && !isBuffering) {
     MainIcon = (
       <TouchableOpacity onPress={handlePlay}>
-        <FontAwesome name={'play-circle'} size={45} />
+        <FontAwesome
+          name={'play-circle'}
+          size={45}
+          style={{ color: theme.iconColor }}
+        />
       </TouchableOpacity>
     );
   }
   if (isPlaying && isLoaded) {
     MainIcon = (
       <TouchableOpacity onPress={handlePause}>
-        <FontAwesome name={'pause-circle'} size={45} />
+        <FontAwesome
+          name={'pause-circle'}
+          size={45}
+          style={{ color: theme.iconColor }}
+        />
       </TouchableOpacity>
     );
   }
 
   const RW = (
     <TouchableOpacity onPress={handleRW}>
-      <MaterialIcons name="replay-30" size={30} />
+      <MaterialIcons
+        name="replay-30"
+        size={30}
+        style={{ color: theme.iconColor }}
+      />
     </TouchableOpacity>
   );
 
   const FF = (
     <TouchableOpacity onPress={handleFF}>
-      <MaterialIcons name="forward-30" size={30} />
+      <MaterialIcons
+        name="forward-30"
+        size={30}
+        style={{ color: theme.iconColor }}
+      />
     </TouchableOpacity>
   );
 
@@ -198,20 +216,20 @@ export const Player = () => {
       <Entypo
         name="loop"
         size={30}
-        style={{ color: isLooping ? '#3cd070' : '#333' }}
+        style={{ color: isLooping ? green : theme.iconColor }}
       />
     </TouchableOpacity>
   );
 
   const Muted = (
     <TouchableOpacity onPress={handleMute}>
-      <Feather name="volume-x" size={30} />
+      <Feather name="volume-x" size={30} style={{ color: theme.iconColor }} />
     </TouchableOpacity>
   );
 
   const NotMuted = (
     <TouchableOpacity onPress={handleMute}>
-      <Feather name="volume-2" size={30} />
+      <Feather name="volume-2" size={30} style={{ color: theme.iconColor }} />
     </TouchableOpacity>
   );
 
