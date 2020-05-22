@@ -13,6 +13,7 @@ import { Text as _Text } from 'react-native';
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
+import { withTheme } from 'styled-components';
 
 const FilterWrap = styled.View`
   position: absolute;
@@ -22,7 +23,7 @@ const FilterWrap = styled.View`
   background-color: ${props => props.theme.filterBG};
   padding: 16px;
   border-radius: 8px;
-  border: 1px #ddd;
+  border: 1px ${props => props.theme.filterBorder};
   z-index: 99;
 `;
 
@@ -36,9 +37,14 @@ const FilterItem = styled.View`
 const Text = styled(_Text)`
   font-size: 16px;
   padding-vertical: 4px;
+  color: ${props => props.theme.filterTextColor};
 `;
 
-export const Filter = () => {
+type Props = {
+  theme: unknown;
+};
+
+const FilterComponent = ({ theme }: Props) => {
   const dispatch = useDispatch();
   const showFilter = useSelector(getShowFilter);
   const { sort, fun, lessons, starred } = useSelector(getFilter);
@@ -66,9 +72,17 @@ export const Filter = () => {
           <FilterItem>
             <Text>Sort</Text>
             {sort === Sort.ASC ? (
-              <Entypo name={'triangle-up'} size={20} />
+              <Entypo
+                name={'triangle-up'}
+                size={20}
+                style={{ color: theme.iconColor }}
+              />
             ) : (
-              <Entypo name={'triangle-down'} size={20} />
+              <Entypo
+                name={'triangle-down'}
+                size={20}
+                style={{ color: theme.iconColor }}
+              />
             )}
           </FilterItem>
         </TouchableOpacity>
@@ -76,9 +90,17 @@ export const Filter = () => {
           <FilterItem>
             <Text>Show Lessons</Text>
             {lessons ? (
-              <MaterialIcons name={'check-box'} size={20} />
+              <MaterialIcons
+                name={'check-box'}
+                size={20}
+                style={{ color: theme.iconColor }}
+              />
             ) : (
-              <MaterialIcons name={'check-box-outline-blank'} size={20} />
+              <MaterialIcons
+                name={'check-box-outline-blank'}
+                size={20}
+                style={{ color: theme.iconColor }}
+              />
             )}
           </FilterItem>
         </TouchableOpacity>
@@ -86,9 +108,17 @@ export const Filter = () => {
           <FilterItem>
             <Text>Show Fun Friday</Text>
             {fun ? (
-              <MaterialIcons name={'check-box'} size={20} />
+              <MaterialIcons
+                name={'check-box'}
+                size={20}
+                style={{ color: theme.iconColor }}
+              />
             ) : (
-              <MaterialIcons name={'check-box-outline-blank'} size={20} />
+              <MaterialIcons
+                name={'check-box-outline-blank'}
+                size={20}
+                style={{ color: theme.iconColor }}
+              />
             )}
           </FilterItem>
         </TouchableOpacity>
@@ -96,9 +126,17 @@ export const Filter = () => {
           <FilterItem>
             <Text>Show Favourites</Text>
             {starred ? (
-              <MaterialIcons name={'check-box'} size={20} />
+              <MaterialIcons
+                name={'check-box'}
+                size={20}
+                style={{ color: theme.iconColor }}
+              />
             ) : (
-              <MaterialIcons name={'check-box-outline-blank'} size={20} />
+              <MaterialIcons
+                name={'check-box-outline-blank'}
+                size={20}
+                style={{ color: theme.iconColor }}
+              />
             )}
           </FilterItem>
         </TouchableOpacity>
@@ -107,3 +145,5 @@ export const Filter = () => {
     null
   );
 };
+
+export const Filter = withTheme(FilterComponent);

@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { Animated } from 'react-native';
+import { withTheme } from 'styled-components';
 
 type Props = {
   size?: number;
+  theme: unknown;
 };
 
-export const Spinner = ({ size = 26 }: Props) => {
+export const Icon = ({ size = 26, theme }: Props) => {
   const spinAnimation = new Animated.Value(0);
   const rotation = spinAnimation.interpolate({
     inputRange: [0, 1],
@@ -21,7 +23,13 @@ export const Spinner = ({ size = 26 }: Props) => {
 
   return (
     <Animated.View style={{ transform: [{ rotate: rotation }] }}>
-      <FontAwesome name={'spinner'} size={size} style={{ color: '#333' }} />
+      <FontAwesome
+        name={'spinner'}
+        size={size}
+        style={{ color: theme.iconColor }}
+      />
     </Animated.View>
   );
 };
+
+export const Spinner = withTheme(Icon);

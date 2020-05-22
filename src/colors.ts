@@ -8,6 +8,7 @@ export const offWhiteDark = '#dddddd';
 
 export const black4 = '#444444';
 export const black5 = '#555555';
+export const black9 = '#999999';
 
 export const lightTheme = {
   tabBG: offWhiteLight,
@@ -30,6 +31,10 @@ export const lightTheme = {
   tabContentBody: offWhiteLight,
   tabViewContentButton: offWhiteDark,
   tabTextColor: black,
+  iconColor: black,
+  starColor: offWhiteDark,
+  filterBorder: offWhiteDark,
+  filterTextColor: black,
 };
 
 export const darkTheme = {
@@ -44,14 +49,17 @@ export const darkTheme = {
   tabActive: black5,
   tab: black4,
   tabBorder: darkBlack,
-  filterBG: offWhiteLight,
+  filterBG: black,
   podcastHeaderText: offWhiteLight,
   podcastSubHeaderText: offWhiteLight,
   headerBG: darkBlack,
   headerColor: offWhiteLight,
-
   tabDetails: offWhiteLight,
   tabContentBody: black4,
   tabViewContentButton: black5,
   tabTextColor: offWhiteLight,
+  iconColor: black9,
+  starColor: black9,
+  filterBorder: darkBlack,
+  filterTextColor: offWhiteLight,
 };
