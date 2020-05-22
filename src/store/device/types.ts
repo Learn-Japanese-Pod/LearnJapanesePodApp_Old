@@ -3,4 +3,5 @@ export type DeviceState = {
   pushToken: boolean;
   loading: boolean;
   notificationPermissions: boolean;
+  theme: string;
 };

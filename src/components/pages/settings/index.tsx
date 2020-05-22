@@ -21,7 +21,7 @@ const Wrap = styled.View`
 `;
 
 const Button = styled.TouchableOpacity`
-  background-color: #dddddd;
+  background-color: ${props => props.theme.buttonBG};
   border-radius: 4px;
   padding: 8px;
   width: 200px;

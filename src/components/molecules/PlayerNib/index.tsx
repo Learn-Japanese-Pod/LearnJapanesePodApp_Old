@@ -7,7 +7,7 @@ import { jumpToAudio } from '../../../store/player/actions';
 const Circle = styled.View`
   width: 30px;
   height: 30px;
-  background-color: #333;
+  background-color: ${props => props.theme.playerNibBG};
   position: absolute;
   left: 0;
   top: 0px;

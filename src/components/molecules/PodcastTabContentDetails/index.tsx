@@ -10,7 +10,7 @@ const DetailsWrap = styled.View`
 `;
 
 const DetailsText = styled(Text)`
-  color: #333;
+  color: ${props => props.theme.tabDetails};
   font-size: 12px;
   padding-horizontal: 4px;
 `;

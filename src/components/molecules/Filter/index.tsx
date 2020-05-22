@@ -19,7 +19,7 @@ const FilterWrap = styled.View`
   top: 8px;
   left: 8px;
   width: 50%;
-  background-color: #f1f1f1;
+  background-color: ${props => props.theme.filterBG};
   padding: 16px;
   border-radius: 8px;
   border: 1px #ddd;

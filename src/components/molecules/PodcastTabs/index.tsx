@@ -9,7 +9,7 @@ const TabsWrapper = styled(View)`
   display: flex;
   flex-flow: row;
   border-bottom-width: 1px;
-  border-color: #ddd;
+  border-color: ${props => props.theme.tabBorder};
 `;
 
 export enum Tabs {

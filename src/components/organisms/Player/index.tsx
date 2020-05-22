@@ -5,9 +5,9 @@ import {
   getStatus,
   getFetching,
 } from '../../../store/player/selectors';
-import styled, { css } from 'styled-components/native';
+import styled, { css, ThemeProvider } from 'styled-components/native';
 import { TouchableOpacity, Dimensions } from 'react-native';
-import { green } from '../../../colors';
+import { green, lightTheme } from '../../../colors';
 import { Text } from 'react-native';
 import { PlayerNib } from '../../molecules/PlayerNib';
 import {
@@ -32,7 +32,7 @@ const Wrap = styled.View`
   display: flex;
   flex-flow: column;
   align-items: center;
-  background-color: #f1f1f1;
+  background-color: ${props => props.theme.playerBG};
   border-top-width: 2px;
   border-color: #ddd;
 `;
@@ -63,7 +63,7 @@ const ProgressBar = styled.View`
 const BufferBar = styled.View`
   ${BarCSS};
   width: ${(props: Buffer) => props.buffer}%;
-  background-color: #ececec;
+  background-color: ${props => props.theme.playerBufferBarBG};
   opacity: 0.3;
   z-index: 1;
 `;
@@ -71,7 +71,7 @@ const BufferBar = styled.View`
 const BackBar = styled.View`
   ${BarCSS};
   width: 100%;
-  background-color: #333;
+  background-color: ${props => props.theme.playerBackBarBG};
   z-index: 0;
 `;
 
@@ -116,7 +116,7 @@ export const Player = () => {
   const isFetching = useSelector(getFetching);
   const { title } = useSelector(getCurrentlyPlaying);
   const screenWidth = Math.round(Dimensions.get('window').width);
-
+  const theme = lightTheme;
   const {
     durationMillis,
     isBuffering,
@@ -218,24 +218,26 @@ export const Player = () => {
   if (!title) return null;
 
   return (
-    <Wrap>
-      <NowPlayingWrap>
-        <NowPlayingText numberOfLines={1}>{title}</NowPlayingText>
-      </NowPlayingWrap>
-      <ProgressWrap>
-        <TouchBar onPress={handleBarPress} />
-        <BackBar pointerEvents="none" />
-        <ProgressBar pointerEvents="none" complete={completionPercentage} />
-        <BufferBar pointerEvents="none" buffer={bufferedPercentage} />
-        <PlayerNib complete={completionPercentage} />
-      </ProgressWrap>
-      <Controls>
-        <IconWrap>{mutedIcon}</IconWrap>
-        <IconWrap>{RW}</IconWrap>
-        <IconWrap>{MainIcon}</IconWrap>
-        <IconWrap>{FF}</IconWrap>
-        <IconWrap>{Loop}</IconWrap>
-      </Controls>
-    </Wrap>
+    <ThemeProvider theme={theme}>
+      <Wrap>
+        <NowPlayingWrap>
+          <NowPlayingText numberOfLines={1}>{title}</NowPlayingText>
+        </NowPlayingWrap>
+        <ProgressWrap>
+          <TouchBar onPress={handleBarPress} />
+          <BackBar pointerEvents="none" />
+          <ProgressBar pointerEvents="none" complete={completionPercentage} />
+          <BufferBar pointerEvents="none" buffer={bufferedPercentage} />
+          <PlayerNib complete={completionPercentage} />
+        </ProgressWrap>
+        <Controls>
+          <IconWrap>{mutedIcon}</IconWrap>
+          <IconWrap>{RW}</IconWrap>
+          <IconWrap>{MainIcon}</IconWrap>
+          <IconWrap>{FF}</IconWrap>
+          <IconWrap>{Loop}</IconWrap>
+        </Controls>
+      </Wrap>
+    </ThemeProvider>
   );
 };

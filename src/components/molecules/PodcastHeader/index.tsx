@@ -25,11 +25,13 @@ const TitleWrap = styled.View`
 
 const HeaderText = styled(Text)`
   font-size: 20px;
+  color: ${props => props.theme.podcastHeaderText};
 `;
 
 const SubHeaderText = styled(Text)`
   font-size: 16px;
   font-weight: bold;
+  color: ${props => props.theme.podcastSubHeaderText};
 `;
 
 const FavouriteButton = styled.TouchableOpacity`

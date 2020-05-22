@@ -10,17 +10,19 @@ import { Alert } from 'react-native';
 const Button = styled.TouchableOpacity`
   width: 100%;
   padding: 8px;
-  background-color: #ddd;
   margin-vertical: 8px;
   border-radius: 4px;
+  background-color: ${props => props.theme.tabViewContentButton};
 `;
 
 const ButtonText = styled(Text)`
   text-align: center;
+  color: ${props => props.theme.tabTextColor};
 `;
 
 const ContentWrap = styled.View`
   padding: 8px;
+  background-color: ${props => props.theme.tabContentBody};
 `;
 
 const TitleText = styled(Text)`
@@ -28,7 +30,9 @@ const TitleText = styled(Text)`
   margin-bottom: 4px;
 `;
 
-const Description = styled(Text)``;
+const Description = styled(Text)`
+  color: ${props => props.theme.tabTextColor};
+`;
 
 type Props = {
   title: string;
